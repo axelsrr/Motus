@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+<h3>MOTUS GAME</h3>
+
+<form action="">
+  <label for="reponse">VOTRE REPONSE :</label><br><br>
+  <input type="text" id="valeur" name="valeur" value=""><br><br>
+  <input type="Submit" id="sub" name="sub" value="Submit" onclick="compare()"><br><br>
+</form> 
+
+<script>
+
+word_of_today = ""
+
+
+// Récupérer le mot du serveur avec jquer
+$.get('/wordguess', (data)=>{ {word_of_today = data.word}})
+
+document.getElementById("sub").addEventListener("click", event.preventDefault());
+
+// Comparer le mot tapé avec le mot du serveur
+function compare(){
+  guess_word = $("#valeur").val()
+  if(guess_word == word_of_today){
+    alert(word_of_today)
+  }
+  else{
+    alert("Mauvais mot")
+  }
+  return false 
+}
+</script>
+
+</body>
+</html>

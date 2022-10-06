@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Test</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      
+      <style type="text/css">
+         .typeahead, .tt-query, .tt-hint {
+         border: 2px solid #CCCCCC;
+         border-radius: 8px;
+         font-size: 12px;
+         height: 100%px;
+         line-height: 100%px;
+         outline: medium none;
+         padding: 8px 12px;
+         width: 100%;
+         }
+         .twitter-typeahead {
+         width: 100%;
+         display:block !important;
+         }
+         .typeahead {
+         background-color: #84e184;
+         }
+         .typeahead:focus {
+         border: 2px solid #0097CF;
+         }
+         .tt-query {
+         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+         }
+         .tt-hint {
+         color: #999999;
+         }
+         .tt-dropdown-menu {
+         background-color: #FFFFFF;
+         border: 1px solid rgba(0, 0, 0, 0.2);
+         border-radius: 8px;
+         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+         margin-top: 12px;
+         padding: 8px 0;
+         width: 422px;
+         }
+         .tt-suggestion {
+         font-size: 12px;
+         line-height: 12px;
+         padding: 3px 20px;
+         }
+         .tt-suggestion.tt-is-under-cursor {
+         background-color: #0097CF;
+         color: #FFFFFF;
+         }
+         .tt-suggestion p {
+         margin: 0;
+         }
+      </style>
+   </head>
+   <body >
+    <script
+        src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous">
+    </script>
+      <div class="container"  >
+         <div class="panel-group">
+            <div class="panel panel-primary"  >
+               <div class="panel-heading" >
+                  <h3 class="panel-title" style="text-align: center;">Test</h3>
+               </div>
+               <div class="panel-body">
+                  <form class="form-horizontal" >
+                     <div class="form-group">
+                        <label class="control-label col-sm-3"  for="acode">ID</label>
+                        <div class="col-sm-5 " id = "empid" >
+                           <div class="  input-group ">
+                              <span class="input-group-addon "><i class="glyphicon glyphicon-user"  aria-hidden="true"></i></span>							  
+                              <input class="form-control " list="employeeid" name="employeeid" id="employeeid"  placeholder="Enter ID">
+                              <datalist  id="employeeid">								
+                              </datalist>
+                              <span class="input-group-btn">							    
+                              <button type="button" id="search" class="btn btn-xs btn-danger" style="background-color:red;">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-search "  aria-hidden="true" ></i></span>
+                              </button>    
+                              </span>							  
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="control-label col-sm-3" style="text-align:right;">Name</label>
+                        <div class="col-sm-5">                                                               
+                           <input type="text" class="form-control" name="employename"  id="employename" placeholder="Enter Name" >        
+                           <span id="errmsg2" class="errmsg"></span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label class="control-label col-sm-3" style="text-align:right;">Number</label>
+                        <div class="col-sm-5">                                                               
+                           <input type="text" class="form-control" name="number"  id="number" placeholder="Enter Number" >        
+                           <span id="errmsg2" class="errmsg"></span>
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit"  onclick="" id="button1" class="btn btn-primary">Save</button>                            
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+      checkEmpty();
+      function checkEmpty(){
+        $('form').find('input').on('blur', function(){
+          if($(this).val()==''){
+            $(this).css('background-color','red');
+          } else {
+            $(this).css('background-color','transparent');
+          };
+        });
+      };
+
+      $('button#button1').on('click', function(){
+		$('form').find('input').each(function(){
+		  if($(this).val()==''){ 
+            $(this).css('background-color','red');
+          } else {
+            $(this).css('background-color','transparent');
+          };
+        });
+
+      });
+
+      $('#employeeid,#number').keypress(function(e){
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+             return false;
+          }
+      });
+
+      $('#employename').keypress(function(e) {
+          if(e.which < 97 /* a */ || e.which > 122 /* z */) {
+              e.preventDefault();
+          }
+      });
+	  </script>
+   </body>
+</html>
